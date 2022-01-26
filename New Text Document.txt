@@ -1,0 +1,7 @@
+select *,if(year(order_date) = year('2019-01-01'),'active','archived') as status
+from orders;
+
+select o.product_id,p.name,count(o.product_id) as orderss,if((count(o.product_id))>1,'many times','one time') as frequency
+from products p 
+join order_items o using(product_id)
+group by product_id,name
